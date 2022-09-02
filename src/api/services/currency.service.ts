@@ -1,7 +1,7 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse } from 'axios';
 
-import { CurrencyCode } from "../../shared/currencies";
-import { ExchangeRateResponse, ConvertResponse } from "../../shared/interfaces";
+import { CurrencyCode } from '../../shared/currencies';
+import { ExchangeRateResponse, ConvertResponse } from '../../shared/interfaces';
 
 import api from './../config';
 
