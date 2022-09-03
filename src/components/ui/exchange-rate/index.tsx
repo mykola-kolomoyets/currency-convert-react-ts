@@ -1,12 +1,12 @@
 /**
  * MODULES
  */
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 /**
  * API
  */
-import { CurrencyService } from '@api/services';
+import { useExchangeRate } from '@api/hooks';
 
 /**
  * ASSETS
@@ -31,37 +31,18 @@ import {
 
 export const ExchangeRate: FC = () => {
   /**
-   * STATE
+   * FETCHING 
    */
-  const [EURRate, setEURRate] = useState(0);
-  const [USDRate, setUSDRate] = useState(0);
+  const {
+    response: eurRate,
+    isFetched: isEurRateFetched
+  } = useExchangeRate(euro, hryvnia);
 
-  const [isFetching, setIsFetching] = useState(true);
+  const {
+    response: usdRate,
+    isFetched: isUsdRateFetched
+  } = useExchangeRate(usd, hryvnia);
 
-  /**
-   * HELPER FUNCTIONS
-   */
-  const fetchRates = async () => {
-    setIsFetching(true);
-
-    await Promise.all([
-      CurrencyService.getExchangeRate(euro, hryvnia),
-      CurrencyService.getExchangeRate(usd, hryvnia)
-    ])
-      .then(([eurResponse, usdResponse]) => {
-        setEURRate(eurResponse.data.conversion_rate);
-        setUSDRate(usdResponse.data.conversion_rate);
-      })
-      .catch(console.log)
-      .finally(() => setIsFetching(false));
-  }
-
-  /**
-   * EFFECTS
-   */
-  useEffect(() => {
-    fetchRates();
-  }, []);
 
   return (
     <ExchangeRateWrapper>
@@ -70,7 +51,7 @@ export const ExchangeRate: FC = () => {
 
         <CurrencyInfoWrapper>
           <CurrencyInfo>EUR</CurrencyInfo>
-          <CurrencyAmount>{isFetching ? '.....' : EURRate.toFixed(2)}</CurrencyAmount>
+          <CurrencyAmount>{isEurRateFetched && eurRate ? eurRate.toFixed(2) : '.....'}</CurrencyAmount>
         </CurrencyInfoWrapper>
       </CurrencyContainer>
 
@@ -81,7 +62,7 @@ export const ExchangeRate: FC = () => {
 
         <CurrencyInfoWrapper>
           <CurrencyInfo>USD</CurrencyInfo>
-          <CurrencyAmount>{isFetching ? '.....' : USDRate.toFixed(2)}</CurrencyAmount>
+          <CurrencyAmount>{isUsdRateFetched && usdRate ? usdRate.toFixed(2) : '.....'}</CurrencyAmount>
         </CurrencyInfoWrapper>
       </CurrencyContainer>
     </ExchangeRateWrapper>

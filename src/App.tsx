@@ -7,7 +7,7 @@ import { FC, useEffect, useMemo, useState } from 'react';
 /**
  * API
  */
-import { CurrencyService } from '@api/services';
+import { useAllRates } from '@api/hooks';
 
 /**
  * COMPONENTS
@@ -34,6 +34,12 @@ const App: FC = () => {
   const [toAmount, setToAmount] = useState(1);
 
   const [allRates, setAllRates] = useState<Rates>({});
+
+  /**
+   * FETCHING
+   */
+
+  const { isLoading, response: allRatesResponse, isFetched } = useAllRates();
 
   /**
    * MEMOIZED
@@ -87,18 +93,17 @@ const App: FC = () => {
   }, [toCurrency, fromAmount]);
 
   useEffect(() => {
-    CurrencyService.getAllRates('USD')
-      .then(({ data }) => {
-        const secondCurrency = Object.keys(data.conversion_rates)[1];
+    if (isFetched && allRatesResponse) {
+      const secondCurrency = Object.keys(allRatesResponse.conversion_rates)[1];
 
-        setAllRates(data.conversion_rates);
+      setAllRates(allRatesResponse.conversion_rates);
 
-        setFromCurrency(data.base_code);
-        setToCurrency(secondCurrency);
+      setFromCurrency(allRatesResponse.base_code);
+      setToCurrency(secondCurrency);
 
-        setFromAmount(1);
-      });
-  }, []);
+      setFromAmount(1);
+    }
+  }, [allRatesResponse, isFetched]);
 
   return (
     <Wrapper>
@@ -111,7 +116,7 @@ const App: FC = () => {
             amount={fromAmount}
             currency={fromCurrency}
             secondCurrency={toCurrency}
-            rate={getRateForInput('to') || undefined}
+            rate={isLoading ? undefined : getRateForInput('to')}
             currencies={allCurrencies}
             onCurrencyChange={onFromCurrencyChange}
             onAmountChange={onFromAmountChange}
@@ -122,7 +127,7 @@ const App: FC = () => {
             amount={toAmount}
             currency={toCurrency}
             secondCurrency={fromCurrency}
-            rate={getRateForInput('from') || undefined}
+            rate={isLoading ? undefined : getRateForInput('from')}
             currencies={allCurrencies}
             onCurrencyChange={onToCurrencyChange}
             onAmountChange={onToAmountChange}
