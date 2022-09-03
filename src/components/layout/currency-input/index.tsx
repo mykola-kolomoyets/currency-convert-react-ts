@@ -1,31 +1,80 @@
-import React, { FC } from 'react';
-import NumberFormat from 'react-number-format';
+/**
+ * MODULES
+ */
+import { FC } from 'react';
 
-import { CurrencyCode } from '../../../shared/currencies';
-
+/**
+ * COMPONENTS
+ */
 import { Select } from '../../ui';
-import { CurrencyInputContainer, NumberInput } from './styles';
 
-interface CurrencyInputProps {
-  amount: number;
+/**
+ * CONSTANTS / STYLES
+ */
+import { CurrencyInputProps } from './currency-input.props';
 
-  onCurrencyChange: (selectedCurrency: CurrencyCode) => void;
-  onAmountChange: (amount: number) => void;
-}
+import {
+  CurrencyInputContainer,
+  CurrencyInputHeader,
+  CurrencyInputLabel,
+  InputContainer,
+  NumberInput,
+  RateLabelAmount,
+  RateLabelContainer,
+  RateLabelText
+} from './styles';
 
-export const CurrencyInput: FC<CurrencyInputProps> = ({ amount, onCurrencyChange, onAmountChange }) => {
 
-  return (
-    <CurrencyInputContainer>
-      <Select initialOption={CurrencyCode.USD} onOptionChangeCallback={onCurrencyChange} />
+export const CurrencyInput: FC<CurrencyInputProps> = ({
+  label,
+  currency,
+  secondCurrency,
+  rate,
+  amount,
+  currencies,
+  onCurrencyChange,
+  onAmountChange
+}) => (
+  <CurrencyInputContainer>
+    <CurrencyInputHeader>
+      {label && <CurrencyInputLabel>{label}</CurrencyInputLabel>}
 
-      <div>
-        <NumberInput
-          value={amount}
-          onValueChange={({ value }) => onAmountChange(+value)}
-          thousandSeparator
-        />
-      </div>
-    </CurrencyInputContainer>
-  )
-}
+      <Select
+        value={currency}
+        options={currencies}
+        onOptionChangeCallback={onCurrencyChange}
+      />
+    </CurrencyInputHeader>
+
+    <InputContainer>
+      <NumberInput
+        value={amount}
+        maxLength={10}
+        allowLeadingZeros={false}
+        allowNegative={false}
+        decimalScale={2}
+        onValueChange={({ value }) => onAmountChange(+value)}
+        thousandSeparator
+      />
+
+      {secondCurrency && rate && (
+        <RateLabelContainer>
+          <RateLabelText>
+            1 {currency} =
+          </RateLabelText>
+
+          <RateLabelAmount
+            value={rate}
+            displayType={'text'}
+            decimalScale={2}
+            thousandSeparator
+          />
+
+          <RateLabelText>
+            {secondCurrency}
+          </RateLabelText>
+        </RateLabelContainer>
+      )}
+    </InputContainer>
+  </CurrencyInputContainer>
+);

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum Colors {
   light_cyan = '#B2ECE1',
   neutral_cyan = '#8CDEDC',
@@ -5,8 +6,10 @@ export enum Colors {
   red = '#BA274A',
   darker_red = '#841C26',
 
-  black = '#11151C',
-  white = '#FFFFFF',
+  black = '#161616',
+  white = '#eef',
 
-  light_grey = '#e5e5e5'
+  light_grey = '#e5e5e5',
+
+  dark_purple = '#335'
 }

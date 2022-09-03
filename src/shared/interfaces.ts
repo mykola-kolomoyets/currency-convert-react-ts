@@ -1,13 +1,24 @@
-import { CurrencyCode } from './currencies';
 
+/**
+ * COMMON
+ */
+export interface Rates {
+  [key: string]: number;
+}
 
-export interface  ExchangeRateResponse {
+/**
+ * API
+ */
+interface ResponseBase {
   result: 'success' | 'error';
-  base_code: CurrencyCode;
-  target_code: CurrencyCode;
+  base_code: string;
+}
+
+export interface  ExchangeRateResponse extends ResponseBase {
+  target_code: string;
   conversion_rate: number;
 }
 
-export interface ConvertResponse extends ExchangeRateResponse {
-  conversion_result: number;
+export interface AllRatesResponse extends ResponseBase {
+  conversion_rates: Rates
 }

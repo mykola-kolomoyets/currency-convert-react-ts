@@ -1,20 +1,33 @@
+/**
+ * MODULES
+ */
 import { AxiosResponse } from 'axios';
 
-import { CurrencyCode } from '../../shared/currencies';
-import { ExchangeRateResponse, ConvertResponse } from '../../shared/interfaces';
+/**
+ * CONSTANTS
+ */
+import { ExchangeRateResponse, AllRatesResponse } from '../../shared/interfaces';
 
 import api from './../config';
 
-export class CurrencyService {
+
+export default class CurrencyService {
+  /**
+   * ROUTES PATHS
+   */
   private static paths = {
-    getPair: '/pair'
+    getPair: '/pair',
+    latest: '/latest'
   }
 
-  public static getExchangeRate(from: CurrencyCode, to: CurrencyCode): Promise<AxiosResponse<ExchangeRateResponse>> {
+  /**
+   * ROUTES METHODS
+   */
+  public static getExchangeRate(from: string, to: string): Promise<AxiosResponse<ExchangeRateResponse>> {
     return api.get(`${this.paths.getPair}/${from}/${to}`);
   }
 
-  public static convert(from: CurrencyCode, to: CurrencyCode, amount: number): Promise<AxiosResponse<ConvertResponse>> {
-    return api.get(`${this.paths.getPair}/${from}/${to}/${amount}`);
+  public static getAllRates(curency: string): Promise<AxiosResponse<AllRatesResponse>> {
+    return api.get(`${this.paths.latest}/${curency}`);
   }
 }

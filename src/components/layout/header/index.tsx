@@ -1,19 +1,26 @@
+/**
+ * MODULES
+ */
 import { FC } from 'react';
 
+/**
+ * COMPONENTS
+ */
 import { ExchangeRate } from '../../ui';
 
+/**
+ * CONSTANTS / STYLES
+ */
 import { HeaderContainer, HeaderLogo, HeaderWrapper } from './styles';
 
-export const Header: FC = () => {
 
-  return (
-    <HeaderWrapper>
-      <HeaderContainer>
-        <HeaderLogo>Test Converter</HeaderLogo>
+export const Header: FC = () => (
+  <HeaderWrapper>
+    <HeaderContainer>
+      <HeaderLogo>Kolo Converter</HeaderLogo>
 
-        <ExchangeRate />
-      </HeaderContainer>
+      <ExchangeRate />
+    </HeaderContainer>
 
-    </HeaderWrapper>
-  )
-}
+  </HeaderWrapper>
+)

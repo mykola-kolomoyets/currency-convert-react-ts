@@ -1,38 +1,81 @@
-import React, { FC, useState } from 'react'
-import { CurrencyCode } from '../../../shared/currencies';
+/**
+ * MODULES
+ */
+import { FC, useRef, useState } from 'react'
+import { useOnClickOutside } from '../../../shared/hooks/useClickOutside';
 
-import { SelectContainer, SelectHeader, SelectListContainer, SelectList, ListItem } from './styles';
+/**
+ * ASSETS
+ */
+import ArrowRightIcon from './../../../assets/arrow-right.svg';
 
-interface SelectProps {
-  initialOption: CurrencyCode;
-  onOptionChangeCallback: (value: CurrencyCode) => void;
-}
+/**
+ * CONSTANTS / STYLES
+ */
+import { SelectProps } from './select.props';
 
-export const Select: FC<SelectProps> = ({ initialOption, onOptionChangeCallback }) => {
+import {
+  SelectContainer,
+  SelectHeader,
+  SelectListContainer,
+  SelectList,
+  ListItem,
+  SelectArrow
+} from './styles';
+
+
+export const Select: FC<SelectProps> = ({ value, options, onOptionChangeCallback }) => {
+  /**
+   * STATE
+   */
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<CurrencyCode>(initialOption);
 
+  /**
+   * HOOKS
+   */
+  const selectContainerRef = useRef(null);
+
+  /**
+   * HELPER FUNCTIONS
+   */
   const onToggle = () => setIsOpen(prev => !prev);
 
-  const onOptionSelect = (value: CurrencyCode) => {
-    setSelectedOption(value);
+  /**
+   * EVENT HANDLERS
+   */
+  const onOptionSelect = (selected: string) => {
     setIsOpen(false);
 
-    onOptionChangeCallback(value);
+    onOptionChangeCallback(selected);
   }
 
+  const onSelectBlur = () => setIsOpen(false);
+
+  /**
+   * EFFECTS
+   */
+  useOnClickOutside(selectContainerRef, onSelectBlur);
+
+
   return (
-    <SelectContainer>
-      <SelectHeader onClick={onToggle}>{selectedOption}</SelectHeader>
+    <SelectContainer ref={selectContainerRef} data-testid='select'>
+      <SelectHeader onClick={onToggle} data-testid='select-header'>
+        <span data-testid='select-title'>
+          {value}
+        </span>
+
+        <SelectArrow src={ArrowRightIcon} isActive={isOpen} />
+      </SelectHeader>
 
       {isOpen && (
-        <SelectListContainer>
+        <SelectListContainer data-testid='select-options'>
           <SelectList>
-            {Object.values(CurrencyCode).map(currency => (
+            {options.map(currency => (
               <ListItem
+                data-testid='select-item'
                 key={currency}
                 onClick={() => onOptionSelect(currency)}
-                isSelected={currency === selectedOption}
+                isSelected={currency === value}
               >
                 {currency}
               </ListItem>
