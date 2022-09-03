@@ -7,17 +7,17 @@ import { FC, useEffect, useMemo, useState } from 'react';
 /**
  * API
  */
-import CurrencyService from './api/services/currency.service';
+import { CurrencyService } from '@api/services';
 
 /**
  * COMPONENTS
  */
-import { CurrencyInput, Footer, Header } from './components/layout';
+import { CurrencyInput, Footer, Header } from '@layout';
 
 /**
  * CONSTANTS / STYLES
  */
-import { Rates } from './shared/interfaces';
+import { Rates } from '@shared/interfaces';
 
 import './app.scss';
 import { InputsWrapper, Main, Wrapper } from './app.styles';

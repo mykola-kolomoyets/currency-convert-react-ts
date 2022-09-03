@@ -6,7 +6,7 @@ import { FC } from 'react';
 /**
  * COMPONENTS
  */
-import { Select } from '../../ui';
+import { Select } from '@ui';
 
 /**
  * CONSTANTS / STYLES

@@ -6,12 +6,12 @@ import { AxiosResponse } from 'axios';
 /**
  * CONSTANTS
  */
-import { ExchangeRateResponse, AllRatesResponse } from '../../shared/interfaces';
+import { ExchangeRateResponse, AllRatesResponse } from '@shared/interfaces';
 
-import api from './../config';
+import api from '@api/config';
 
 
-export default class CurrencyService {
+export class CurrencyService {
   /**
    * ROUTES PATHS
    */

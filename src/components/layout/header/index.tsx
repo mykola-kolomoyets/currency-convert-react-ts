@@ -6,7 +6,7 @@ import { FC } from 'react';
 /**
  * COMPONENTS
  */
-import { ExchangeRate } from '../../ui';
+import { ExchangeRate } from '@ui';
 
 /**
  * CONSTANTS / STYLES

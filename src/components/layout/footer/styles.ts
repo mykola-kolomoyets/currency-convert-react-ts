@@ -6,7 +6,7 @@
  /**
   * CONSTANTS
   */
-import { Colors } from '../../../shared/colors';
+import { Colors } from '@shared/colors';
 
 
 export const StyledFooter = styled.footer`

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 /**
  * CONSTANTS
  */
-import { Colors } from '../../../shared/colors';
+import { Colors } from '@shared/colors';
 
 
 export const CurrencyInputContainer = styled.article`

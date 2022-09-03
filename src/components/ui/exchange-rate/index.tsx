@@ -6,13 +6,13 @@ import { FC, useEffect, useState } from 'react';
 /**
  * API
  */
-import CurrencyService from '../../../api/services/currency.service';
+import { CurrencyService } from '@api/services';
 
 /**
  * ASSETS
  */
-import EULogo from './../../../assets/european-union.png';
-import USALogo from './../../../assets/usa.png';
+import EULogo from '@assets/european-union.png';
+import USALogo from '@assets/usa.png';
 
 /**
  * CONSTANTS / STYLES

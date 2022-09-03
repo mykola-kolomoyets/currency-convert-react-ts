@@ -6,7 +6,7 @@ import styled from 'styled-components';
 /**
  * CONSTANTS
  */
-import { Colors } from '../../../shared/colors';
+import { Colors } from '@shared/colors';
 
 
 export const CurrencyLogo = styled.img`

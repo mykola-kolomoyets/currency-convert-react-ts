@@ -2,16 +2,17 @@
  * MODULES
  */
 import { FC, useRef, useState } from 'react'
-import { useOnClickOutside } from '../../../shared/hooks/useClickOutside';
 
 /**
  * ASSETS
  */
-import ArrowRightIcon from './../../../assets/arrow-right.svg';
+import ArrowRightIcon from '@assets/arrow-right.svg';
 
 /**
  * CONSTANTS / STYLES
  */
+import { useOnClickOutside } from '@shared/hooks/useClickOutside';
+
 import { SelectProps } from './select.props';
 
 import {

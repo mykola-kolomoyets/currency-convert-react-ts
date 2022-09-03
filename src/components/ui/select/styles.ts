@@ -9,7 +9,7 @@ import styled from 'styled-components';
  */
 import { ListItemProps, SelectImageProps } from './select.props';
 
-import { Colors } from '../../../shared/colors';
+import { Colors } from '@shared/colors';
 
 
 export const SelectContainer = styled('div')`
