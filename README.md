@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to React Currency Converter 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.4.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > Web-based platform to manage products and tokens in crypto for investors and issuers
