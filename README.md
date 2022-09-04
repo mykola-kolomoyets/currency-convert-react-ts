@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.4.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Web-based platform to manage products and tokens in crypto for investors and issuers
+> Test task for creating the currency convertor using the stack below:
 ### Tech Stack
 - React.js
 - Typescript
