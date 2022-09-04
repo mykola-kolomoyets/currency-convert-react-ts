@@ -7,7 +7,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 /**
  * COMPONENTS
  */
-import { Select } from '.';
+import { Select } from '@ui';
 
 /**
  * MOCK CONSTANTS

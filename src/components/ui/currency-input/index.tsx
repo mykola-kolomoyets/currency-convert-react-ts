@@ -48,7 +48,8 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
 
     <InputContainer>
       <NumberInput
-        value={amount}
+        data-testid='converter-amount-input'
+        value={amount || 0}
         maxLength={10}
         allowLeadingZeros={false}
         allowNegative={false}
@@ -64,6 +65,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
           </RateLabelText>
 
           <RateLabelAmount
+            data-testid='converter-rate-label'
             value={rate}
             displayType={'text'}
             decimalScale={2}

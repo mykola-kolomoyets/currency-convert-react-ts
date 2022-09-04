@@ -45,13 +45,13 @@ export const ExchangeRate: FC = () => {
 
 
   return (
-    <ExchangeRateWrapper>
+    <ExchangeRateWrapper data-testid='rate-wrapper'>
       <CurrencyContainer>
         <CurrencyLogo src={EULogo} alt="EU" />
 
         <CurrencyInfoWrapper>
           <CurrencyInfo>EUR</CurrencyInfo>
-          <CurrencyAmount>{isEurRateFetched && eurRate ? eurRate.toFixed(2) : '.....'}</CurrencyAmount>
+          <CurrencyAmount data-testid='eur-rate'>{isEurRateFetched && eurRate ? eurRate.toFixed(2) : '.....'}</CurrencyAmount>
         </CurrencyInfoWrapper>
       </CurrencyContainer>
 
@@ -62,7 +62,7 @@ export const ExchangeRate: FC = () => {
 
         <CurrencyInfoWrapper>
           <CurrencyInfo>USD</CurrencyInfo>
-          <CurrencyAmount>{isUsdRateFetched && usdRate ? usdRate.toFixed(2) : '.....'}</CurrencyAmount>
+          <CurrencyAmount data-testid='usd-rate'>{isUsdRateFetched && usdRate ? usdRate.toFixed(2) : '.....'}</CurrencyAmount>
         </CurrencyInfoWrapper>
       </CurrencyContainer>
     </ExchangeRateWrapper>

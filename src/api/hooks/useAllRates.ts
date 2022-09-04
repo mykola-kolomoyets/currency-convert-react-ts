@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import { CurrencyService } from '@api/services';
 
 
-export const useAllRates = () => {
+const useAllRates = () => {
   const { isLoading, data: response, error, isFetched } = useQuery(
     'all rates', 
     () => CurrencyService.getAllRates('USD'),
@@ -25,4 +25,6 @@ export const useAllRates = () => {
     error,
     isFetched
   };
-}
+};
+
+export default useAllRates;

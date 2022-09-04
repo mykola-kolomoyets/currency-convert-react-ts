@@ -9,7 +9,7 @@
  import { CurrencyService } from '@api/services';
  
  
- export const useExchangeRate = (from: string, to: string) => {
+const useExchangeRate = (from: string, to: string) => {
    const { isLoading, data: response, error, isFetched } = useQuery(
      ['exchange rate', from, to], 
      () => CurrencyService.getExchangeRate(from, to),
@@ -26,3 +26,5 @@
      isFetched
    };
  }
+
+ export default useExchangeRate;

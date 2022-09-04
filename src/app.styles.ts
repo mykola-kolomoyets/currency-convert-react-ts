@@ -31,21 +31,3 @@ export const Main = styled.main`
     padding: 0;
   }
 `;
-
-export const InputsWrapper = styled.div`
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 2em;
-
-  @media screen and (max-width: 750px) { 
-    grid-template-columns: 1fr;
-  }
-  `;
-
-export const SwapContainer = styled.div`
-  display: grid;
-
-  place-items: center;
-`;

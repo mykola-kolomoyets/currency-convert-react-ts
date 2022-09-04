@@ -11,7 +11,7 @@ import { ExchangeRateResponse, AllRatesResponse } from '@shared/interfaces';
 import api from '@api/config';
 
 
-export class CurrencyService {
+export default class CurrencyService {
   /**
    * ROUTES PATHS
    */
